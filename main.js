@@ -53,7 +53,7 @@ const loadTheme = (xmlContent, noRender) => {
 const loadPalette = (xmlContent) => {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(xmlContent, "text/xml");
-  
+
   const colors = [
     ...xmlDoc.querySelectorAll(
       "key[name='.Vanilla'] > value[name^='ColorTable'], key[name='Palette1'] > value[name^='ColorTable']"
