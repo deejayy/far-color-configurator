@@ -236,7 +236,7 @@ const loadThemeFromGithub = (title) => {
 
 const loadThemes = () => {
   fetch(
-    "https://raw.githubusercontent.com/FarGroup/FarManager/refs/heads/master/extra/Addons/Colors/Interface/Descript.ion"
+    "https://raw.githubusercontent.com/deejayy/far-color-configurator/refs/heads/master/themes/Descript.ion"
   )
     .then((response) => response.text())
     .then((data) => {
