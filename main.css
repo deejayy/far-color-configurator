@@ -1,0 +1,347 @@
+@font-face {
+  font-family: "Classic Console WEB"; 
+  src: url(https://webdraft.hu/fonts/classic-console/fonts/clacon2.woff2); /* Download from here: https://webdraft.hu/fonts/classic-console/ , MIT licensed */
+}
+
+:root {
+  --c00: #272822;
+  --c01: #34488d;
+  --c02: #86b42b;
+  --c03: #56adbc;
+  --c04: #90274a;
+  --c05: #8c6bc8;
+  --c06: #fd971f;
+  --c07: #acabac;
+  --c08: #686961;
+  --c09: #718dff;
+  --c10: #a6e22e; /* A */
+  --c11: #66d9ef; /* B */
+  --c12: #f92672; /* C */
+  --c13: #c285eb; /* D */
+  --c14: #e6db74; /* E */
+  --c15: #e3e3dd; /* F */
+
+  --c0A: var(--c10);
+  --c0B: var(--c11);
+  --c0C: var(--c12);
+  --c0D: var(--c13);
+  --c0E: var(--c14);
+  --c0F: var(--c15);
+  --c0x: inherit;
+}
+
+body {
+  font-family: "Classic Console WEB", monospace;
+  background-color: var(--c00);
+  color: var(--c07);
+  margin: 0;
+  padding: 20px;
+  cursor: default;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--c08);
+  margin: 20px 0;
+}
+
+a {
+  color: var(--c0F);
+}
+
+summary {
+  cursor: pointer;
+}
+
+.themer {
+  display: flex;
+  gap: 32px;
+}
+
+.preview {
+  font-family: "Classic Console WEB", monospace;
+  font-size: 16px;
+  line-height: 16px;
+  white-space: pre-wrap;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+  width: 700px;
+  min-width: 700px;
+  overflow: auto;
+  max-height: 90vh;
+}
+
+.preview .c {
+  display: inline-block;
+  background-color: var(--bg-Panel-Text);
+  color: var(--fg-Panel-Text);
+}
+
+.controls {
+  flex-grow: 1;
+}
+
+.colorboxes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cbox {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+  background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+  background-color: currentColor;
+  border: 1px solid transparent;
+}
+
+.cbox.selected {
+  border: 1px solid white;
+  box-shadow: 0 0 5px 5px currentColor;
+}
+
+.cbox.c00 { color: var(--c00); }
+.cbox.c01 { color: var(--c01); }
+.cbox.c02 { color: var(--c02); }
+.cbox.c03 { color: var(--c03); }
+.cbox.c04 { color: var(--c04); }
+.cbox.c05 { color: var(--c05); }
+.cbox.c06 { color: var(--c06); }
+.cbox.c07 { color: var(--c07); }
+.cbox.c08 { color: var(--c08); }
+.cbox.c09 { color: var(--c09); }
+.cbox.c10 { color: var(--c10); }
+.cbox.c11 { color: var(--c11); }
+.cbox.c12 { color: var(--c12); }
+.cbox.c13 { color: var(--c13); }
+.cbox.c14 { color: var(--c14); }
+.cbox.c15 { color: var(--c15); }
+.cbox.c0A { color: var(--c0A); }
+.cbox.c0B { color: var(--c0B); }
+.cbox.c0C { color: var(--c0C); }
+.cbox.c0D { color: var(--c0D); }
+.cbox.c0E { color: var(--c0E); }
+.cbox.c0F { color: var(--c0F); }
+
+.cbox.c0x {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: transparent;
+  background-image: linear-gradient(
+    -45deg,
+    hsla(0, 50%, 50%, 0.25),
+    hsla(60, 50%, 50%, 0.25),
+    hsla(120, 50%, 50%, 0.25),
+    hsla(180, 50%, 50%, 0.25),
+    hsla(240, 50%, 50%, 0.25),
+    hsla(300, 50%, 50%, 0.25)
+  );
+}
+
+.button {
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 16px 0;
+}
+
+.theme-list, .palette-list {
+  margin-bottom: 16px;
+}
+
+.theme-name, .palette-name {
+  color: var(--c0F);
+  cursor: pointer;
+}
+
+.theme-name .desc, .palette-name .desc {
+  color: var(--c08);
+}
+
+.theme-name:hover::before, .palette-name:hover::before {
+  color: var(--c08);
+  content: "» ";
+  position: relative;
+  left: 0;
+}
+
+.browser {
+  display: flex;
+  gap: 32px;
+}
+
+.theme-browser, .palette-browser {
+  flex-grow: 1;
+  overflow: auto;
+  flex-basis: 0;
+}
+
+.palette-browser {
+  border-left: 1px solid var(--c08);
+  padding-left: 32px;
+}
+
+.c.CommandLine { background-color: var(--bg-CommandLine); color: var(--fg-CommandLine); } /* ok */
+.c.CommandLine.Prefix { background-color: var(--bg-CommandLine-Prefix); color: var(--fg-CommandLine-Prefix); } /* ok */
+.c.CommandLine.UserScreen { background-color: var(--bg-CommandLine-UserScreen); color: var(--fg-CommandLine-UserScreen); } /* ok */
+.c.Panel.Box { background-color: var(--bg-Panel-Box); color: var(--fg-Panel-Box); } /* ok */
+.c.Panel.Cursor { background-color: var(--bg-Panel-Cursor); color: var(--fg-Panel-Cursor); } /* ok */
+.c.Panel.Cursor.Selected { background-color: var(--bg-Panel-Cursor-Selected); color: var(--fg-Panel-Cursor-Selected); } /* ok */
+.c.Panel.Info.Selected { background-color: var(--bg-Panel-Info-Selected); color: var(--fg-Panel-Info-Selected); } /* ok */
+.c.Panel.Info.Total { background-color: var(--bg-Panel-Info-Total); color: var(--fg-Panel-Info-Total); } /* ok */
+.c.Panel.Text { background-color: var(--bg-Panel-Text); color: var(--fg-Panel-Text); } /* ok */
+.c.Panel.Text.Selected { background-color: var(--bg-Panel-Text-Selected); color: var(--fg-Panel-Text-Selected); } /* ok */
+.c.Panel.Title.Column { background-color: var(--bg-Panel-Title-Column); color: var(--fg-Panel-Title-Column); } /* ok */
+.c.Panel.Scrollbar { background-color: var(--bg-Panel-Scrollbar); color: var(--fg-Panel-Scrollbar); } /* ok */
+.c.Clock { background-color: var(--bg-Clock); color: var(--fg-Clock); } /* ok */
+.c.CommandLine.Selected { background-color: var(--bg-CommandLine-Selected); color: var(--fg-CommandLine-Selected); } /* ok */
+.c.Keybar.Background { background-color: var(--bg-Keybar-Background); color: var(--fg-Keybar-Background); } /* ok */
+.c.Keybar.Num { background-color: var(--bg-Keybar-Num); color: var(--fg-Keybar-Num); } /* ok */
+.c.Keybar.Text { background-color: var(--bg-Keybar-Text); color: var(--fg-Keybar-Text); } /* ok */
+.c.HMenu.Text { background-color: var(--bg-HMenu-Text); color: var(--fg-HMenu-Text); } /* ok */
+.c.HMenu.Text.Selected { background-color: var(--bg-HMenu-Text-Selected); color: var(--fg-HMenu-Text-Selected); } /* ok */
+.c.HMenu.Highlight { background-color: var(--bg-HMenu-Highlight); color: var(--fg-HMenu-Highlight); } /* ok */
+.c.HMenu.Highlight.Selected { background-color: var(--bg-HMenu-Highlight-Selected); color: var(--fg-HMenu-Highlight-Selected); } /* ok */
+.c.Panel.ScreensNumber { background-color: var(--bg-Panel-ScreensNumber); color: var(--fg-Panel-ScreensNumber); } /* ok */
+.c.Panel.DragText { background-color: var(--bg-Panel-DragText); color: var(--fg-Panel-DragText); } /* ok */
+.c.Panel.Title { background-color: var(--bg-Panel-Title); color: var(--fg-Panel-Title); } /* ok */
+.c.Panel.Title.Selected { background-color: var(--bg-Panel-Title-Selected); color: var(--fg-Panel-Title-Selected); } /* ok */
+.c.Panel.Text.Highlight { background-color: var(--bg-Panel-Text-Highlight); color: var(--fg-Panel-Text-Highlight); } /* ok */
+.c.Menu.Highlight { background-color: var(--bg-Menu-Highlight); color: var(--fg-Menu-Highlight); } /* ok */
+.c.Menu.Highlight.Selected { background-color: var(--bg-Menu-Highlight-Selected); color: var(--fg-Menu-Highlight-Selected); } /* ok */
+.c.Menu.Text { background-color: var(--bg-Menu-Text); color: var(--fg-Menu-Text); } /* ok */
+.c.Menu.Text.Selected { background-color: var(--bg-Menu-Text-Selected); color: var(--fg-Menu-Text-Selected); } /* ok */
+.c.Menu.Box { background-color: var(--bg-Menu-Box); color: var(--fg-Menu-Box); } /* ok */
+.c.Menu.Text.Disabled { background-color: var(--bg-Menu-Text-Disabled); color: var(--fg-Menu-Text-Disabled); } /* ok */
+.c.Menu.Title { background-color: var(--bg-Menu-Title); color: var(--fg-Menu-Title); } /* ok */
+.c.Menu.Scrollbar { background-color: var(--bg-Menu-Scrollbar); color: var(--fg-Menu-Scrollbar); } /* ok */
+.c.Menu.Arrows { background-color: var(--bg-Menu-Arrows); color: var(--fg-Menu-Arrows); } /* ok */
+.c.Menu.Arrows.Disabled { background-color: var(--bg-Menu-Arrows-Disabled); color: var(--fg-Menu-Arrows-Disabled); } /* ok */
+.c.Menu.Arrows.Selected { background-color: var(--bg-Menu-Arrows-Selected); color: var(--fg-Menu-Arrows-Selected); } /* ok */
+.c.Viewer.Arrows { background-color: var(--bg-Viewer-Arrows); color: var(--fg-Viewer-Arrows); } /* ok */
+.c.Viewer.Scrollbar { background-color: var(--bg-Viewer-Scrollbar); color: var(--fg-Viewer-Scrollbar); } /* ok */
+.c.Viewer.Text { background-color: var(--bg-Viewer-Text); color: var(--fg-Viewer-Text); } /* ok */
+.c.Viewer.Text.Selected { background-color: var(--bg-Viewer-Text-Selected); color: var(--fg-Viewer-Text-Selected); } /* ok */
+.c.Viewer.Status { background-color: var(--bg-Viewer-Status); color: var(--fg-Viewer-Status); }
+.c.Viewer.Clock { background-color: var(--bg-Viewer-Clock); color: var(--fg-Viewer-Clock); } /* ok */
+.c.Editor.Status { background-color: var(--bg-Editor-Status); color: var(--fg-Editor-Status); } /* ok */
+.c.Editor.Clock { background-color: var(--bg-Editor-Clock); color: var(--fg-Editor-Clock); } /* ok */
+.c.Editor.Scrollbar { background-color: var(--bg-Editor-Scrollbar); color: var(--fg-Editor-Scrollbar); } /* ok */
+.c.Editor.Text { background-color: var(--bg-Editor-Text); color: var(--fg-Editor-Text); } /* ok */
+.c.Editor.Text.Selected { background-color: var(--bg-Editor-Text-Selected); color: var(--fg-Editor-Text-Selected); } /* ok */
+.c.Dialog.Box { background-color: var(--bg-Dialog-Box); color: var(--fg-Dialog-Box); } /* ok */
+.c.Dialog.Box.Title { background-color: var(--bg-Dialog-Box-Title); color: var(--fg-Dialog-Box-Title); } /* ok */
+.c.Dialog.DefaultButton { background-color: var(--bg-Dialog-DefaultButton); color: var(--fg-Dialog-DefaultButton); } /* ok */
+.c.Dialog.DefaultButton.Highlight { background-color: var(--bg-Dialog-DefaultButton-Highlight); color: var(--fg-Dialog-DefaultButton-Highlight); } /* ok */
+.c.Dialog.DefaultButton.Highlight.Selected { background-color: var(--bg-Dialog-DefaultButton-Highlight-Selected); color: var(--fg-Dialog-DefaultButton-Highlight-Selected); } /* ok */
+.c.Dialog.DefaultButton.Selected { background-color: var(--bg-Dialog-DefaultButton-Selected); color: var(--fg-Dialog-DefaultButton-Selected); } /* ok */
+.c.Dialog.Button { background-color: var(--bg-Dialog-Button); color: var(--fg-Dialog-Button); } /* ok */
+.c.Dialog.Button.Highlight { background-color: var(--bg-Dialog-Button-Highlight); color: var(--fg-Dialog-Button-Highlight); } /* ok */
+.c.Dialog.Button.Highlight.Selected { background-color: var(--bg-Dialog-Button-Highlight-Selected); color: var(--fg-Dialog-Button-Highlight-Selected); } /* ok */
+.c.Dialog.Button.Selected { background-color: var(--bg-Dialog-Button-Selected); color: var(--fg-Dialog-Button-Selected); } /* ok */
+.c.Dialog.Text { background-color: var(--bg-Dialog-Text); color: var(--fg-Dialog-Text); } /* ok */
+.c.Dialog.Text.Highlight { background-color: var(--bg-Dialog-Text-Highlight); color: var(--fg-Dialog-Text-Highlight); } /* ok */
+.c.Dialog.Disabled { background-color: var(--bg-Dialog-Disabled); color: var(--fg-Dialog-Disabled); } /* ok */
+.c.Dialog.Edit { background-color: var(--bg-Dialog-Edit); color: var(--fg-Dialog-Edit); } /* ok */
+.c.Dialog.Edit.Disabled { background-color: var(--bg-Dialog-Edit-Disabled); color: var(--fg-Dialog-Edit-Disabled); } /* ok */
+.c.Dialog.Edit.Selected { background-color: var(--bg-Dialog-Edit-Selected); color: var(--fg-Dialog-Edit-Selected); } /* ok */
+.c.Dialog.Edit.Unchanged { background-color: var(--bg-Dialog-Edit-Unchanged); color: var(--fg-Dialog-Edit-Unchanged); } /* ok */
+.c.Dialog.Combo.Arrows { background-color: var(--bg-Dialog-Combo-Arrows); color: var(--fg-Dialog-Combo-Arrows); } /* ok */
+.c.Dialog.Combo.Arrows.Disabled { background-color: var(--bg-Dialog-Combo-Arrows-Disabled); color: var(--fg-Dialog-Combo-Arrows-Disabled); } /* ok */
+.c.Dialog.Combo.Arrows.Selected { background-color: var(--bg-Dialog-Combo-Arrows-Selected); color: var(--fg-Dialog-Combo-Arrows-Selected); } /* ok */
+.c.Dialog.Combo.Box { background-color: var(--bg-Dialog-Combo-Box); color: var(--fg-Dialog-Combo-Box); } /* ok */
+.c.Dialog.Combo.Disabled { background-color: var(--bg-Dialog-Combo-Disabled); color: var(--fg-Dialog-Combo-Disabled); } /* ok */
+.c.Dialog.Combo.Highlight { background-color: var(--bg-Dialog-Combo-Highlight); color: var(--fg-Dialog-Combo-Highlight); } /* ok */
+.c.Dialog.Combo.Highlight.Selected { background-color: var(--bg-Dialog-Combo-Highlight-Selected); color: var(--fg-Dialog-Combo-Highlight-Selected); } /* ok */
+.c.Dialog.Combo.Scrollbar { background-color: var(--bg-Dialog-Combo-Scrollbar); color: var(--fg-Dialog-Combo-Scrollbar); } /* ok */
+.c.Dialog.Combo.Text { background-color: var(--bg-Dialog-Combo-Text); color: var(--fg-Dialog-Combo-Text); } /* ok */
+.c.Dialog.Combo.Text.Selected { background-color: var(--bg-Dialog-Combo-Text-Selected); color: var(--fg-Dialog-Combo-Text-Selected); } /* ok */
+.c.Dialog.Combo.Title { background-color: var(--bg-Dialog-Combo-Title); color: var(--fg-Dialog-Combo-Title); } /* ok */
+.c.Help.Scrollbar { background-color: var(--bg-Help-Scrollbar); color: var(--fg-Help-Scrollbar); } /* ok */
+.c.Help.Box.Title { background-color: var(--bg-Help-Box-Title); color: var(--fg-Help-Box-Title); } /* ok */
+.c.Help.Box { background-color: var(--bg-Help-Box); color: var(--fg-Help-Box); } /* ok */
+.c.Help.Text { background-color: var(--bg-Help-Text); color: var(--fg-Help-Text); } /* ok */
+.c.Help.Text.Highlight { background-color: var(--bg-Help-Text-Highlight); color: var(--fg-Help-Text-Highlight); } /* ok */
+.c.Help.Topic { background-color: var(--bg-Help-Topic); color: var(--fg-Help-Topic); } /* ok */
+.c.Help.Topic.Selected { background-color: var(--bg-Help-Topic-Selected); color: var(--fg-Help-Topic-Selected); } /* ok */
+.c.WarnDialog.Text { background-color: var(--bg-WarnDialog-Text); color: var(--fg-WarnDialog-Text); } /* ok */
+.c.WarnDialog.Text.Highlight { background-color: var(--bg-WarnDialog-Text-Highlight); color: var(--fg-WarnDialog-Text-Highlight); } /* ok */
+.c.WarnDialog.Box { background-color: var(--bg-WarnDialog-Box); color: var(--fg-WarnDialog-Box); } /* ok */
+.c.WarnDialog.Box.Title { background-color: var(--bg-WarnDialog-Box-Title); color: var(--fg-WarnDialog-Box-Title); } /* ok */
+.c.WarnDialog.DefaultButton { background-color: var(--bg-WarnDialog-DefaultButton); color: var(--fg-WarnDialog-DefaultButton); } /* ok */
+.c.WarnDialog.DefaultButton.Selected { background-color: var(--bg-WarnDialog-DefaultButton-Selected); color: var(--fg-WarnDialog-DefaultButton-Selected); } /* ok */
+.c.WarnDialog.DefaultButton.Highlight { background-color: var(--bg-WarnDialog-DefaultButton-Highlight); color: var(--fg-WarnDialog-DefaultButton-Highlight); } /* ok */
+.c.WarnDialog.DefaultButton.Highlight.Selected { background-color: var(--bg-WarnDialog-DefaultButton-Highlight-Selected); color: var(--fg-WarnDialog-DefaultButton-Highlight-Selected); } /* ok */
+.c.WarnDialog.Button { background-color: var(--bg-WarnDialog-Button); color: var(--fg-WarnDialog-Button); } /* ok */
+.c.WarnDialog.Button.Highlight { background-color: var(--bg-WarnDialog-Button-Highlight); color: var(--fg-WarnDialog-Button-Highlight); } /* ok */
+.c.WarnDialog.Button.Selected { background-color: var(--bg-WarnDialog-Button-Selected); color: var(--fg-WarnDialog-Button-Selected); } /* ok */
+.c.WarnDialog.Button.Highlight.Selected { background-color: var(--bg-WarnDialog-Button-Highlight-Selected); color: var(--fg-WarnDialog-Button-Highlight-Selected); } /* ok */
+.c.WarnDialog.Combo.Arrows { background-color: var(--bg-WarnDialog-Combo-Arrows); color: var(--fg-WarnDialog-Combo-Arrows); } /* ok */
+.c.WarnDialog.Combo.Arrows.Disabled { background-color: var(--bg-WarnDialog-Combo-Arrows-Disabled); color: var(--fg-WarnDialog-Combo-Arrows-Disabled); } /* ok */
+.c.WarnDialog.Combo.Arrows.Selected { background-color: var(--bg-WarnDialog-Combo-Arrows-Selected); color: var(--fg-WarnDialog-Combo-Arrows-Selected); } /* ok */
+.c.WarnDialog.Combo.Box { background-color: var(--bg-WarnDialog-Combo-Box); color: var(--fg-WarnDialog-Combo-Box); } /* ok */
+.c.WarnDialog.Combo.Disabled { background-color: var(--bg-WarnDialog-Combo-Disabled); color: var(--fg-WarnDialog-Combo-Disabled); } /* ok */
+.c.WarnDialog.Combo.Highlight { background-color: var(--bg-WarnDialog-Combo-Highlight); color: var(--fg-WarnDialog-Combo-Highlight); } /* ok */
+.c.WarnDialog.Combo.Highlight.Selected { background-color: var(--bg-WarnDialog-Combo-Highlight-Selected); color: var(--fg-WarnDialog-Combo-Highlight-Selected); } /* ok */
+.c.WarnDialog.Combo.Scrollbar { background-color: var(--bg-WarnDialog-Combo-Scrollbar); color: var(--fg-WarnDialog-Combo-Scrollbar); } /* ok */
+.c.WarnDialog.Combo.Text { background-color: var(--bg-WarnDialog-Combo-Text); color: var(--fg-WarnDialog-Combo-Text); } /* ok */
+.c.WarnDialog.Combo.Text.Selected { background-color: var(--bg-WarnDialog-Combo-Text-Selected); color: var(--fg-WarnDialog-Combo-Text-Selected); } /* ok */
+.c.WarnDialog.Combo.Title { background-color: var(--bg-WarnDialog-Combo-Title); color: var(--fg-WarnDialog-Combo-Title); } /* ok */
+.c.WarnDialog.Disabled { background-color: var(--bg-WarnDialog-Disabled); color: var(--fg-WarnDialog-Disabled); } /* ok */
+.c.WarnDialog.Edit { background-color: var(--bg-WarnDialog-Edit); color: var(--fg-WarnDialog-Edit); } /* ok */
+.c.WarnDialog.Edit.Disabled { background-color: var(--bg-WarnDialog-Edit-Disabled); color: var(--fg-WarnDialog-Edit-Disabled); } /* ok */
+.c.WarnDialog.Edit.Selected { background-color: var(--bg-WarnDialog-Edit-Selected); color: var(--fg-WarnDialog-Edit-Selected); } /* ok */
+.c.WarnDialog.Edit.Unchanged { background-color: var(--bg-WarnDialog-Edit-Unchanged); color: var(--fg-WarnDialog-Edit-Unchanged); } /* ok */
+
+/* -- unknown -- */
+
+.c.Panel.Text.Info { background-color: var(--bg-Panel-Text-Info); color: var(--fg-Panel-Text-Info); }
+.c.Menu.GrayText { background-color: var(--bg-Menu-GrayText); color: var(--fg-Menu-GrayText); }
+.c.Menu.GrayText.Selected { background-color: var(--bg-Menu-GrayText-Selected); color: var(--fg-Menu-GrayText-Selected); }
+.c.Dialog.Box.Title.Highlight { background-color: var(--bg-Dialog-Box-Title-Highlight); color: var(--fg-Dialog-Box-Title-Highlight); }
+.c.Dialog.Combo.GrayText { background-color: var(--bg-Dialog-Combo-GrayText); color: var(--fg-Dialog-Combo-GrayText); }
+.c.Dialog.Combo.GrayText.Selected { background-color: var(--bg-Dialog-Combo-GrayText-Selected); color: var(--fg-Dialog-Combo-GrayText-Selected); }
+.c.WarnDialog.Box.Title.Highlight { background-color: var(--bg-WarnDialog-Box-Title-Highlight); color: var(--fg-WarnDialog-Box-Title-Highlight); }
+.c.WarnDialog.Combo.GrayText { background-color: var(--bg-WarnDialog-Combo-GrayText); color: var(--fg-WarnDialog-Combo-GrayText); }
+.c.WarnDialog.Combo.GrayText.Selected { background-color: var(--bg-WarnDialog-Combo-GrayText-Selected); color: var(--fg-WarnDialog-Combo-GrayText-Selected); }
+
+/* we can use Combo for List as well */
+/*
+.c.Dialog.List.Arrows { background-color: var(--bg-Dialog-List-Arrows); color: var(--fg-Dialog-List-Arrows); }
+.c.Dialog.List.Arrows.Disabled { background-color: var(--bg-Dialog-List-Arrows-Disabled); color: var(--fg-Dialog-List-Arrows-Disabled); }
+.c.Dialog.List.Arrows.Selected { background-color: var(--bg-Dialog-List-Arrows-Selected); color: var(--fg-Dialog-List-Arrows-Selected); }
+.c.Dialog.List.Box { background-color: var(--bg-Dialog-List-Box); color: var(--fg-Dialog-List-Box); }
+.c.Dialog.List.Disabled { background-color: var(--bg-Dialog-List-Disabled); color: var(--fg-Dialog-List-Disabled); }
+.c.Dialog.List.GrayText { background-color: var(--bg-Dialog-List-GrayText); color: var(--fg-Dialog-List-GrayText); }
+.c.Dialog.List.GrayText.Selected { background-color: var(--bg-Dialog-List-GrayText-Selected); color: var(--fg-Dialog-List-GrayText-Selected); }
+.c.Dialog.List.Highlight { background-color: var(--bg-Dialog-List-Highlight); color: var(--fg-Dialog-List-Highlight); }
+.c.Dialog.List.Highlight.Selected { background-color: var(--bg-Dialog-List-Highlight-Selected); color: var(--fg-Dialog-List-Highlight-Selected); }
+.c.Dialog.List.Scrollbar { background-color: var(--bg-Dialog-List-Scrollbar); color: var(--fg-Dialog-List-Scrollbar); }
+.c.Dialog.List.Text { background-color: var(--bg-Dialog-List-Text); color: var(--fg-Dialog-List-Text); }
+.c.Dialog.List.Text.Selected { background-color: var(--bg-Dialog-List-Text-Selected); color: var(--fg-Dialog-List-Text-Selected); }
+.c.Dialog.List.Title { background-color: var(--bg-Dialog-List-Title); color: var(--fg-Dialog-List-Title); }
+ */
+
+/* we can use Combo for List as well */
+/* 
+.c.WarnDialog.List.Arrows { background-color: var(--bg-WarnDialog-List-Arrows); color: var(--fg-WarnDialog-List-Arrows); }
+.c.WarnDialog.List.Arrows.Disabled { background-color: var(--bg-WarnDialog-List-Arrows-Disabled); color: var(--fg-WarnDialog-List-Arrows-Disabled); }
+.c.WarnDialog.List.Arrows.Selected { background-color: var(--bg-WarnDialog-List-Arrows-Selected); color: var(--fg-WarnDialog-List-Arrows-Selected); }
+.c.WarnDialog.List.Box { background-color: var(--bg-WarnDialog-List-Box); color: var(--fg-WarnDialog-List-Box); }
+.c.WarnDialog.List.Disabled { background-color: var(--bg-WarnDialog-List-Disabled); color: var(--fg-WarnDialog-List-Disabled); }
+.c.WarnDialog.List.GrayText { background-color: var(--bg-WarnDialog-List-GrayText); color: var(--fg-WarnDialog-List-GrayText); }
+.c.WarnDialog.List.GrayText.Selected { background-color: var(--bg-WarnDialog-List-GrayText-Selected); color: var(--fg-WarnDialog-List-GrayText-Selected); }
+.c.WarnDialog.List.Highlight { background-color: var(--bg-WarnDialog-List-Highlight); color: var(--fg-WarnDialog-List-Highlight); }
+.c.WarnDialog.List.Highlight.Selected { background-color: var(--bg-WarnDialog-List-Highlight-Selected); color: var(--fg-WarnDialog-List-Highlight-Selected); }
+.c.WarnDialog.List.Scrollbar { background-color: var(--bg-WarnDialog-List-Scrollbar); color: var(--fg-WarnDialog-List-Scrollbar); }
+.c.WarnDialog.List.Text { background-color: var(--bg-WarnDialog-List-Text); color: var(--fg-WarnDialog-List-Text); }
+.c.WarnDialog.List.Text.Selected { background-color: var(--bg-WarnDialog-List-Text-Selected); color: var(--fg-WarnDialog-List-Text-Selected); }
+.c.WarnDialog.List.Title { background-color: var(--bg-WarnDialog-List-Title); color: var(--fg-WarnDialog-List-Title); }
+*/
