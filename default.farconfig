@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <farconfig>
     <colors>
-        <object name="Clock" background="FF000003" foreground="FF000000" flags="fgindex bgindex ulindex inherit"/>
+        <object name="Clock" background="FF000003" foreground="FF000000" flags="bgindex fgindex ulindex inherit"/>
         <object name="CommandLine" background="FF800000" foreground="FF800000" underline="FF800000" flags="fgindex bgindex ulindex inherit"/>
         <object name="CommandLine.Prefix" background="FF800000" foreground="FF800000" underline="FF800000" flags="fgindex bgindex ulindex inherit"/>
         <object name="CommandLine.Selected" background="FF000003" foreground="FF000000" flags="fgindex bgindex ulindex inherit"/>

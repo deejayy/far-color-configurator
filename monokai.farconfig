@@ -124,7 +124,7 @@
     <object name="WarnDialog.Combo.Text.Selected" background="FF00000?" foreground="FF00000?" flags="fgindex bgindex inherit"/>
     <object name="WarnDialog.Combo.Title" background="FF00000?" foreground="FF00000?" flags="fgindex bgindex inherit"/>
     <object name="WarnDialog.DefaultButton" background="FF000004" foreground="FF00000F" flags="fgindex bgindex inherit"/>
-    <object name="WarnDialog.DefaultButton.Highlight" background="FF00000?" foreground="FF00000?" flags="fgindex bgindex inherit"/>
+    <object name="WarnDialog.DefaultButton.Highlight" background="FF000004" foreground="FF00000C" flags="fgindex bgindex inherit"/>
     <object name="WarnDialog.DefaultButton.Highlight.Selected" background="FF000006" foreground="FF00000C" flags="fgindex bgindex inherit"/>
     <object name="WarnDialog.DefaultButton.Selected" background="FF000006" foreground="FF000000" flags="fgindex bgindex inherit"/>
     <object name="WarnDialog.Disabled" background="FF000004" foreground="FF000008" flags="fgindex bgindex inherit"/>

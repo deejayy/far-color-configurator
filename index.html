@@ -6,11 +6,15 @@
     <link rel="icon" href="favicon.ico" />
     <title>FAR Color Configurator</title>
     <link rel="stylesheet" href="main.css" />
-    <script src="main.js"></script>
     <script src="https://captcha.cv.co.hu/captcha.js" defer></script>
+    <script>
+      let configurator;
+    </script>
   </head>
   <body>
-    FarThemer<br /><br />
+    FarThemer
+    <br />
+    <br />
     <div class="themer">
       <pre class="preview">
 <span class="c HMenu Text">    <span class="c HMenu Text"><span class="c HMenu Highlight">L</span>eft  </span><span class="c HMenu Text Selected">  <span class="c HMenu Highlight Selected">F</span>iles  </span><span class="c HMenu Text">  <span class="c HMenu Highlight">C</span>ommands  </span><span class="c HMenu Text">  <span class="c HMenu Highlight">O</span>ptions  </span><span class="c HMenu Text">  <span class="c HMenu Highlight">R</span>ight  </span>                        </span><span class="c Clock">12:35</span>
@@ -199,22 +203,21 @@
       </pre>
       <div class="controls">
         Font used:
-        <a
-          href="https://webdraft.hu/fonts/classic-console/"
-          target="_blank"
-          rel="nofollow"
-          >Original 8x16 ASCII Console Fixed Width Font</a
-        >
+        <a href="https://webdraft.hu/fonts/classic-console/" target="_blank" rel="nofollow">Original 8x16 ASCII Console Fixed Width Font</a>
         <br />
-        <button class="button c Dialog Button" onclick="importTheme()">
+        <button class="button c Dialog Button" onclick="configurator.importTheme()">
           [ <span class="c Dialog Button Highlight">L</span>oad FAR theme ]
         </button>
-        <button class="button c Dialog Button" onclick="importPalette()">
+        <button class="button c Dialog Button" onclick="configurator.importPalette()">
           [ L<span class="c Dialog Button Highlight">o</span>ad ConEmu palette ]
         </button>
         <br />
-        Hover: <span id="hovered">None</span><br />
-        Selected: <span id="selected">None</span><br />
+        Hover:
+        <span id="hovered">None</span>
+        <br />
+        Selected:
+        <span id="selected">None</span>
+        <br />
         Background:
         <div class="colorboxes" id="bg-colors">
           <div class="cbox c00"></div>
@@ -255,10 +258,10 @@
           <div class="cbox c0F"></div>
           <div class="cbox c0x">?</div>
         </div>
-        <button class="button c Dialog Button" onclick="exportTheme()">
+        <button class="button c Dialog Button" onclick="configurator.exportTheme()">
           [ <span class="c Dialog Button Highlight">S</span>ave FAR theme ]
         </button>
-        <button class="button c Dialog Button" onclick="exportPalette()">
+        <button class="button c Dialog Button" onclick="configurator.exportPalette()">
           [ Sa<span class="c Dialog Button Highlight">v</span>e ConEmu palette ]
         </button>
         <br />
@@ -266,34 +269,29 @@
         <details>
           <summary>How to import/export theme/palette?</summary>
           <br />
-          How to import FAR themes: copy FarThemer.farconfig to
-          %FARHOME%/Addons/Colors/Interface,<br />
-          or just far.exe /import FarThemer.farconfig <br /><br />
-          How to import ConEmu palette:
-          https://github.com/deejayy/Cmder-Color-Themes
-          <br /><br />How to export FAR themes: far.exe /export full-config.farconfig.
-          Whatever you load here, stays in your browser. <br /><br />
-          How to export ConEmu palette: you don't, it's already in XML format
-          (check settings for the location).
-          <br /><br />
+          How to import FAR themes: copy FarThemer.farconfig to %FARHOME%/Addons/Colors/Interface,
+          <br />
+          or just far.exe /import FarThemer.farconfig
+          <br />
+          <br />
+          How to import ConEmu palette: https://github.com/deejayy/Cmder-Color-Themes
+          <br />
+          <br />
+          How to export FAR themes: far.exe /export full-config.farconfig. Whatever you load here, stays in your browser.
+          <br />
+          <br />
+          How to export ConEmu palette: you don't, it's already in XML format (check settings for the location).
+          <br />
+          <br />
         </details>
         <details>
           <summary>How to upload/contribute your theme?</summary>
           <br />
           Open a PR in
-          <a
-            href="https://github.com/deejayy/far-color-configurator"
-            target="_blank"
-            >this repo</a
-          >
+          <a href="https://github.com/deejayy/far-color-configurator" target="_blank">this repo</a>
           for themes, and
-          <a
-            href="https://github.com/deejayy/Cmder-Color-Themes"
-            target="_blank"
-            >this repo</a
-          >
-          for palettes. Don't forget to update "Descript.ion" file in either of
-          them.
+          <a href="https://github.com/deejayy/Cmder-Color-Themes" target="_blank">this repo</a>
+          for palettes. Don't forget to update "Descript.ion" file in either of them.
         </details>
         <hr />
         <br />
@@ -302,17 +300,13 @@
             Browse local themes:
 
             <div class="theme-list" id="local-themes">
-              <div
-                class="theme-name"
-                onclick="loadThemeFromURL('./default.farconfig')"
-              >
-                Default <span class="desc">(default FAR Manager theme)</span>
+              <div class="theme-name" onclick="configurator.loadThemeFromURL('./default.farconfig')">
+                Default
+                <span class="desc">(default FAR Manager theme)</span>
               </div>
-              <div
-                class="theme-name"
-                onclick="loadThemeFromURL('./monokai.farconfig')"
-              >
-                Monokai <span class="desc">(Monokai colors (c) deejayy)</span>
+              <div class="theme-name" onclick="configurator.loadThemeFromURL('./monokai.farconfig')">
+                Monokai
+                <span class="desc">(Monokai colors (c) deejayy)</span>
               </div>
             </div>
 
@@ -324,17 +318,13 @@
             Browse local palettes:
 
             <div class="theme-list" id="local-palettes">
-              <div
-                class="palette-name"
-                onclick="loadPaletteFromURL('./default.xml')"
-              >
-                Default <span class="desc">(Standard VGA)</span>
+              <div class="palette-name" onclick="configurator.loadPaletteFromURL('./default.xml')">
+                Default
+                <span class="desc">(Standard VGA)</span>
               </div>
-              <div
-                class="palette-name"
-                onclick="loadPaletteFromURL('./monokai.xml')"
-              >
-                Monokai <span class="desc">(Monokai colors)</span>
+              <div class="palette-name" onclick="configurator.loadPaletteFromURL('./monokai.xml')">
+                Monokai
+                <span class="desc">(Monokai colors)</span>
               </div>
             </div>
 
@@ -345,5 +335,13 @@
         </div>
       </div>
     </div>
+    <script type="module">
+      import Configurator from './main.js';
+
+      document.addEventListener('DOMContentLoaded', () => {
+        configurator = new Configurator();
+        configurator.init();
+      });
+    </script>
   </body>
 </html>
