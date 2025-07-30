@@ -20,6 +20,12 @@ export default class Configurator {
     this.bindClick();
     this.bindColorChange();
     this.bindColorHover();
+    this.resetColorPicker();
+  };
+
+  resetColorPicker = () => {
+    const colorPicker = document.getElementById('color-picker');
+    colorPicker.value = '#808080';
   };
 
   getColorUsers = (colorClass, layer) => {
@@ -63,6 +69,11 @@ export default class Configurator {
 
   showAnsi = (layer) => {
     const elem = document.querySelector(`#${layer}-ansicolors`);
+    elem.style.display = elem.style.display === 'flex' ? 'none' : 'flex';
+  };
+
+  showSwatches = (layer) => {
+    const elem = document.querySelector(`#${layer}-swatches`);
     elem.style.display = elem.style.display === 'flex' ? 'none' : 'flex';
   };
 
@@ -492,6 +503,21 @@ export default class Configurator {
       fgSwatchContainer.appendChild(swatchDiv.cloneNode(true));
       bgSwatchContainer.appendChild(swatchDiv);
     });
+
+    const fgPicker = document.createElement('div');
+    fgPicker.className = 'picker';
+    fgPicker.style.color = 'white';
+    fgPicker.textContent = '+ Add';
+    fgPicker.addEventListener('click', () => {
+      document.querySelector('#color-picker').click();
+    });
+    fgSwatchContainer.appendChild(fgPicker);
+  };
+
+  addSwatchColor = (event) => {
+    this.swatch.push(event.target.value);
+    this.createSwatches();
+    this.updateUsedColors();
   };
 
   applyTheme = (theme) => {

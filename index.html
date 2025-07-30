@@ -218,8 +218,10 @@
         Selected:
         <span id="selected">None</span>
         <br />
-        Background: <a href="#" onclick="configurator.showAnsi('bg')">Show ANSI 256 ▼</a> |
-        <a href="#" onclick="configurator.showSwatches('bg')">Show swatches (RGB) ▼</a>
+        <div class="layer-title">
+          Background: <a href="#" onclick="configurator.showAnsi('bg')">Show ANSI 256 ▼</a> |
+          <a href="#" onclick="configurator.showSwatches('bg')">Show swatches (RGB) ▼</a></div
+        >
         <div class="colorboxes bg boxes" id="bg-colors">
           <div class="cbox c00"></div>
           <div class="cbox c01"></div>
@@ -244,8 +246,10 @@
           <div class="grayscale"></div>
         </div>
         <div class="swatches bg boxes" id="bg-swatches"></div>
-        Text color: <a href="#" onclick="configurator.showAnsi('fg')">Show ANSI 256 ▼</a> |
-        <a href="#" onclick="configurator.showSwatches('fg')">Show swatches (RGB) ▼</a>
+        <div class="layer-title">
+          Text color: <a href="#" onclick="configurator.showAnsi('fg')">Show ANSI 256 ▼</a> |
+          <a href="#" onclick="configurator.showSwatches('fg')">Show swatches (RGB) ▼</a>
+        </div>
         <div class="colorboxes fg boxes" id="fg-colors">
           <div class="cbox c00"></div>
           <div class="cbox c01"></div>
@@ -351,6 +355,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="hidden">
+      <input type="color" id="color-picker" onchange="configurator.addSwatchColor(event)"/>
     </div>
     <div class="tooltip" id="tooltip">
       <div class="tooltip-content" id="tooltip-content"></div>

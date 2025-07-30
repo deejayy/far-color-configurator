@@ -994,12 +994,13 @@ button {
   line-height: 16px;
 }
 
-.swatches {
+.layer-title {
   margin: 8px 0;
 }
 
 .swatches {
-  display: flex;
+  margin: 8px 0;
+  display: none;
   flex-wrap: wrap;
   gap: 4px;
 }
@@ -1012,6 +1013,18 @@ button {
   background-color: currentColor;
   color: transparent;
   border: 2px solid currentColor;
+}
+
+.picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 24px;
+  border-radius: 50vw;
+  background-color: var(--c00);
+  border: 2px solid currentColor;
+  padding: 0 12px;
 }
 
 .swatch.used::after {
@@ -1191,3 +1204,7 @@ button {
 .c.WarnDialog.List.Text.Selected { background-color: var(--bg-WarnDialog-List-Text-Selected); color: var(--fg-WarnDialog-List-Text-Selected); }
 .c.WarnDialog.List.Title { background-color: var(--bg-WarnDialog-List-Title); color: var(--fg-WarnDialog-List-Title); }
 */
+
+.hidden {
+  display: none;
+}
