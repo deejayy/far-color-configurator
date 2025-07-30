@@ -129,6 +129,7 @@ export default class Configurator {
   updateUsedColors = () => {
     const usedFgColors = new Set();
     const usedBgColors = new Set();
+
     this.currentTheme.forEach((item) => {
       if (item.fg) usedFgColors.add(`${item.fg}`);
       if (item.bg) usedBgColors.add(`${item.bg}`);
@@ -214,6 +215,20 @@ export default class Configurator {
     });
   };
 
+  removeUnusedSwatches = () => {
+    const usedColors = new Set();
+
+    this.currentTheme.forEach((item) => {
+      if (item.fg) usedColors.add(`${item.fg}`);
+      if (item.bg) usedColors.add(`${item.bg}`);
+    });
+
+    this.swatch = this.swatch.filter((color) => usedColors.has(color));
+
+    this.createSwatches();
+    this.updateUsedColors();
+  };
+
   bindColorChange = () => {
     document.querySelectorAll('.cbox').forEach((el) => {
       el.addEventListener('click', (event) => {
@@ -248,7 +263,7 @@ export default class Configurator {
         const layer = event.target.closest('.fg') ? 'fg' : 'bg';
         const selected = document.getElementById('selected');
         const color = event.target.dataset.title;
-        if (color.startsWith('#')) {
+        if (color?.startsWith('#')) {
           this.currentTheme.find((i) => i.name === selected.textContent)[layer] = color;
           this.applyTheme(this.currentTheme);
         }

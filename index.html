@@ -218,7 +218,8 @@
         Selected:
         <span id="selected">None</span>
         <br />
-        Background: <a href="#" onclick="configurator.showAnsi('bg')">Show ANSI 256 ▼</a>
+        Background: <a href="#" onclick="configurator.showAnsi('bg')">Show ANSI 256 ▼</a> |
+        <a href="#" onclick="configurator.showSwatches('bg')">Show swatches (RGB) ▼</a>
         <div class="colorboxes bg boxes" id="bg-colors">
           <div class="cbox c00"></div>
           <div class="cbox c01"></div>
@@ -243,7 +244,8 @@
           <div class="grayscale"></div>
         </div>
         <div class="swatches bg boxes" id="bg-swatches"></div>
-        Text color: <a href="#" onclick="configurator.showAnsi('fg')">Show ANSI 256 ▼</a>
+        Text color: <a href="#" onclick="configurator.showAnsi('fg')">Show ANSI 256 ▼</a> |
+        <a href="#" onclick="configurator.showSwatches('fg')">Show swatches (RGB) ▼</a>
         <div class="colorboxes fg boxes" id="fg-colors">
           <div class="cbox c00"></div>
           <div class="cbox c01"></div>
@@ -267,7 +269,12 @@
           <div class="rainbow"></div>
           <div class="grayscale"></div>
         </div>
-        <div class="swatches fg boxes" id="fg-swatches"></div>
+        <div class="swatches fg boxes" id="fg-swatches"> </div>
+        <div>
+          <button class="button c Dialog Button" onclick="configurator.removeUnusedSwatches()"
+            >[ <span class="c Dialog Button Highlight">C</span>lear unused swatches ]</button
+          >
+        </div>
         <button class="button c Dialog Button" onclick="configurator.exportTheme()">
           [ <span class="c Dialog Button Highlight">S</span>ave FAR theme ]
         </button>
