@@ -504,14 +504,20 @@ export default class Configurator {
       bgSwatchContainer.appendChild(swatchDiv);
     });
 
-    const fgPicker = document.createElement('div');
-    fgPicker.className = 'picker';
-    fgPicker.style.color = 'white';
-    fgPicker.textContent = '+ Add';
+    const picker = document.createElement('div');
+    picker.className = 'picker';
+    picker.style.color = 'white';
+    picker.textContent = '+ Add';
+    const fgPicker = picker.cloneNode(true);
+    const bgPicker = picker.cloneNode(true);
     fgPicker.addEventListener('click', () => {
       document.querySelector('#color-picker').click();
     });
+    bgPicker.addEventListener('click', () => {
+      document.querySelector('#color-picker').click();
+    });
     fgSwatchContainer.appendChild(fgPicker);
+    bgSwatchContainer.appendChild(bgPicker);
   };
 
   addSwatchColor = (event) => {
