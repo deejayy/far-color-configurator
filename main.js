@@ -400,14 +400,20 @@ export default class Configurator {
     return catalog;
   };
 
-  loadThemeFromURL = async (url) => {
+  loadThemeFromURL = async (url, noApply) => {
+    if (url !== './default.farconfig') {
+      await this.loadThemeFromURL('./default.farconfig', true);
+    }
+
     const themeFile = await fetch(url)
       .then((response) => response.text())
       .catch((error) => {
         console.error('Error loading theme:', error);
       });
 
-    this.applyTheme(this.parseFarconfig(themeFile));
+    if (!noApply) {
+      this.applyTheme(this.parseFarconfig(themeFile));
+    }
   };
 
   loadThemeFromGithub = async (file) => {
