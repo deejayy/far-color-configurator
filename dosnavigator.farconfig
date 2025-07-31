@@ -64,8 +64,8 @@
         <object name="Help.Scrollbar" background="FF000001" foreground="FF000003" flags="fgindex bgindex inherit"/>
         <object name="Help.Text" background="FF000003" foreground="FF000000" flags="fgindex bgindex inherit"/>
         <object name="Help.Text.Highlight" background="FF000003" foreground="FF00000F" flags="fgindex bgindex inherit"/>
-        <object name="Help.Topic" background="FF000001" foreground="FF00000E" flags="fgindex bgindex inherit"/>
-        <object name="Help.Topic.Selected" background="FF000003" foreground="FF00000E" flags="fgindex bgindex inherit"/>
+        <object name="Help.Topic" background="FF000003" foreground="FF00000E" flags="fgindex bgindex inherit"/>
+        <object name="Help.Topic.Selected" background="FF000001" foreground="FF00000E" flags="fgindex bgindex inherit"/>
         <object name="Keybar.Background" background="FF000007" foreground="FF000000" flags="fgindex bgindex inherit"/>
         <object name="Keybar.Num" background="FF000007" foreground="FF000004" flags="fgindex bgindex inherit"/>
         <object name="Keybar.Text" background="FF000007" foreground="FF000000" flags="fgindex bgindex inherit"/>
