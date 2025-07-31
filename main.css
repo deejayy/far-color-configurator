@@ -1184,6 +1184,12 @@ button {
 .c.WarnDialog.List.Text.Selected { background-color: var(--bg-WarnDialog-List-Text-Selected); color: var(--fg-WarnDialog-List-Text-Selected); }
 .c.WarnDialog.List.Title { background-color: var(--bg-WarnDialog-List-Title); color: var(--fg-WarnDialog-List-Title); }
 
+/* special rules */
+
+.c.Panel.Box .c.Panel.Title.Column { background-color: var(--bg-Panel-Title-Column); color: var(--fg-Panel-Box); } /* ok */
+.c.Panel.Box .c.Panel.Cursor { background-color: var(--bg-Panel-Cursor); color: var(--fg-Panel-Box); } /* ok */
+.c.Panel.Box .c.Panel.Text.Selected { background-color: var(--bg-Panel-Text-Selected); color: var(--fg-Panel-Box); } /* ok */
+
 /* -- unknown -- */
 
 .c.Dialog.Box.Title.Highlight { background-color: var(--bg-Dialog-Box-Title-Highlight); color: var(--fg-Dialog-Box-Title-Highlight); }
