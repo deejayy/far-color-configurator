@@ -569,7 +569,7 @@ button {
   max-height: 90vh;
 }
 
-.gallery {
+.gallery, .palettes {
   display: flex;
   gap: 16px;
   max-width: calc(100vw - 32px - 64px - 700px);
@@ -577,9 +577,31 @@ button {
 }
 
 .gallery-item {
+  --x00: var(--c00);
+  --x01: var(--c01);
+  --x02: var(--c02);
+  --x03: var(--c03);
+  --x04: var(--c04);
+  --x05: var(--c05);
+  --x06: var(--c06);
+  --x07: var(--c07);
+  --x08: var(--c08);
+  --x09: var(--c09);
+  --x0A: var(--c10);
+  --x0B: var(--c11);
+  --x0C: var(--c12);
+  --x0D: var(--c13);
+  --x0E: var(--c14);
+  --x0F: var(--c15);
+  --x10: var(--c16);
+  --x11: var(--c17);
+  --x12: var(--c18);
+  --x13: var(--c19);
+  --x14: var(--c20);
+  --x15: var(--c21);
+  --size: 5px;
   cursor: pointer;
   font-family: "Classic Console WEB", monospace;
-  --size: 5px;
   font-size: var(--size);
   line-height: var(--size);
   white-space: pre-wrap;

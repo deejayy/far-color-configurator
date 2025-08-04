@@ -12,7 +12,7 @@ export default class Configurator {
   init = async () => {
     this.paletteCatalog = await this.loadCatalog(this.PALETTE_FOLDER).then(this.listPalettes);
     this.themeCatalog = await this.loadCatalog(this.THEME_FOLDER).then(this.listThemes);
-    this.loadPaletteFromURL('./palettes/monokai.xml');
+    this.applyPalette(await this.loadPaletteFromURL('./palettes/monokai.xml'));
     this.applyTheme(await this.loadThemeFromURL('./themes/default.farconfig'));
     this.generateAnsi256Palette();
 
@@ -326,15 +326,36 @@ export default class Configurator {
   };
 
   listPalettes = (catalog) => {
+    const gallery = document.querySelector('.palettes');
+    const galleryItem = document.querySelector('.gallery-item.hidden');
+
     catalog.forEach(({ file, desc }) => {
-      const paletteList = document.getElementById('palettes');
-      const paletteDiv = document.createElement('div');
-      paletteDiv.className = 'palette-name';
-      paletteDiv.innerHTML = `${file} <span class="desc">(${desc})</span>`;
-      paletteDiv.addEventListener('click', () => {
-        this.loadPaletteFromGithub(file);
+      const galleryItemClone = galleryItem.cloneNode(true);
+      const paletteName = file.replace(/\.xml/, '');
+      const paletteDesc = `${file} - ${desc}`;
+
+      const nameAndDesc = document.createElement('div');
+      nameAndDesc.className = 'name-and-desc';
+      nameAndDesc.textContent = paletteName;
+
+      galleryItemClone.classList.remove('hidden');
+      galleryItemClone.title = paletteDesc;
+      galleryItemClone.dataset.title = paletteName;
+      this.loadPaletteFromGithub(file).then(async (palette) => {
+        await this.loadThemeFromURL('./themes/default.farconfig').then((theme) => {
+          this.applyPaletteToNode(palette, galleryItemClone);
+          this.applyThemeToNode(theme, galleryItemClone);
+        });
       });
-      paletteList.appendChild(paletteDiv);
+      galleryItemClone.appendChild(nameAndDesc);
+      galleryItemClone.addEventListener('click', async () => {
+        this.applyPalette(await this.loadPaletteFromGithub(file));
+        document.querySelectorAll('.palettes .gallery-item').forEach((el) => {
+          this.applyThemeToNode(this.currentTheme, el);
+        });
+      });
+
+      gallery.appendChild(galleryItemClone);
     });
 
     return catalog;
@@ -347,12 +368,12 @@ export default class Configurator {
         console.error('Error loading palette:', error);
       });
 
-    this.applyPalette(this.parseConEmuPalette(paletteFile));
+    return this.parseConEmuPalette(paletteFile);
   };
 
   loadPaletteFromGithub = async (file) => {
     const url = `${this.PALETTE_FOLDER}/${file}`;
-    await this.loadPaletteFromURL(url);
+    return await this.loadPaletteFromURL(url);
   };
 
   parseConEmuPalette = (xmlContents) => {
@@ -377,43 +398,46 @@ export default class Configurator {
     return palette;
   };
 
-  applyPalette = (palette) => {
-    this.currentPalette = palette;
-    const root = document.documentElement;
+  applyPaletteToNode = (palette, node) => {
+    const root = node ?? document.documentElement;
     Object.entries(palette).forEach(([key, value]) => {
       root.style.setProperty(`--${key}`, value);
     });
   };
 
+  applyPalette = (palette) => {
+    this.currentPalette = palette;
+    this.applyPaletteToNode(palette, document.documentElement);
+  };
+
   listThemes = (catalog) => {
     const gallery = document.querySelector('.gallery');
-    const galleryItem = document.querySelector('.gallery-item');
+    const galleryItem = document.querySelector('.gallery-item.hidden');
 
-    catalog.forEach(async ({ file, desc }) => {
-      const themeList = document.getElementById('official-themes');
-      const themeDiv = document.createElement('div');
+    catalog.forEach(({ file, desc }) => {
       const galleryItemClone = galleryItem.cloneNode(true);
+      const themeName = file.replace(/\.farconfig/, '');
+      const themeDesc = `${file} - ${desc}`;
+
+      const nameAndDesc = document.createElement('div');
+      nameAndDesc.className = 'name-and-desc';
+      nameAndDesc.textContent = themeName;
+
       galleryItemClone.classList.remove('hidden');
-      galleryItemClone.dataset.title = file.replace(/\.farconfig/, '');
+      galleryItemClone.title = themeDesc;
+      galleryItemClone.dataset.title = themeName;
       this.loadThemeFromGithub(file).then((theme) => {
         this.applyThemeToNode(theme, galleryItemClone);
       });
-      const nameAndDesc = document.createElement('div');
-      nameAndDesc.className = 'name-and-desc';
-      galleryItemClone.title = `${file} - ${desc}`;
-      nameAndDesc.textContent = file.replace(/\.farconfig/, '');
       galleryItemClone.appendChild(nameAndDesc);
       galleryItemClone.addEventListener('click', async () => {
         this.applyTheme(await this.loadThemeFromGithub(file));
+        document.querySelectorAll('.palettes .gallery-item').forEach((el) => {
+          this.applyThemeToNode(this.currentTheme, el);
+        });
       });
 
-      themeDiv.className = 'theme-name';
-      themeDiv.innerHTML = `${galleryItemClone.dataset.title} <span class="desc">(${desc})</span>`;
       gallery.appendChild(galleryItemClone);
-      themeDiv.addEventListener('click', async () => {
-        this.applyTheme(await this.loadThemeFromGithub(file));
-      });
-      themeList.appendChild(themeDiv);
     });
 
     return catalog;
@@ -425,11 +449,6 @@ export default class Configurator {
   };
 
   loadThemeFromURL = async (url) => {
-    if (url !== './default.farconfig') {
-      const defaultTheme = await this.loadThemeFromURL('./default.farconfig');
-      // this.applyTheme(defaultTheme);
-    }
-
     const themeFile = await fetch(url)
       .then((response) => response.text())
       .catch((error) => {
@@ -556,7 +575,6 @@ export default class Configurator {
   };
 
   applyThemeToNode = (theme, node) => {
-    this.currentTheme = theme;
     const root = node ?? document.documentElement;
     theme.forEach(({ name, fg, bg }) => {
       if (fg !== undefined) {
@@ -571,6 +589,7 @@ export default class Configurator {
   };
 
   applyTheme = (theme) => {
+    this.currentTheme = theme;
     this.applyThemeToNode(theme, document.documentElement);
 
     this.createSwatches();
