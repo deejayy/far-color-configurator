@@ -12,9 +12,6 @@
     </script>
   </head>
   <body>
-    FarThemer
-    <br />
-    <br />
     <div class="themer">
       <pre class="preview">
 <span class="c HMenu Text">    <span class="c HMenu Text"><span class="c HMenu Highlight">L</span>eft  </span><span class="c HMenu Text Selected">  <span class="c HMenu Highlight Selected">F</span>iles  </span><span class="c HMenu Text">  <span class="c HMenu Highlight">C</span>ommands  </span><span class="c HMenu Text">  <span class="c HMenu Highlight">O</span>ptions  </span><span class="c HMenu Text">  <span class="c HMenu Highlight">R</span>ight  </span>                        </span><span class="c Clock">12:35</span>
@@ -329,29 +326,32 @@
           for palettes. Don't forget to update "Descript.ion" file in either of them.
         </details>
         <hr />
+        <div class="gallery">
+        </div>
+        <hr />
         <br />
         <div class="browser">
           <div class="theme-browser">
             Browse local themes:
 
             <div class="theme-list" id="local-themes">
-              <div class="theme-name" onclick="configurator.loadThemeFromURL('./default.farconfig')">
+              <div class="theme-name" onclick="configurator.applyThemeFromURL('./default.farconfig')">
                 Default
                 <span class="desc">(default FAR Manager theme)</span>
               </div>
-              <div class="theme-name" onclick="configurator.loadThemeFromURL('./monokai.farconfig')">
+              <div class="theme-name" onclick="configurator.applyThemeFromURL('./monokai.farconfig')">
                 Monokai
                 <span class="desc">(Monokai colors (c) deejayy)</span>
               </div>
-              <div class="theme-name" onclick="configurator.loadThemeFromURL('./dosnavigator.farconfig')">
+              <div class="theme-name" onclick="configurator.applyThemeFromURL('./dosnavigator.farconfig')">
                 DOS Navigator
                 <span class="desc">(DOS Navigator default colors (c) deejayy)</span>
               </div>
-              <div class="theme-name" onclick="configurator.loadThemeFromURL('./dark-dn.farconfig')">
+              <div class="theme-name" onclick="configurator.applyThemeFromURL('./dark-dn.farconfig')">
                 Dark DN
                 <span class="desc">(DOS Navigator dark colors (c) deejayy)</span>
               </div>
-              <div class="theme-name" onclick="configurator.loadThemeFromURL('./filewizard.farconfig')">
+              <div class="theme-name" onclick="configurator.applyThemeFromURL('./filewizard.farconfig')">
                 File Wizard
                 <span class="desc">(File Wizard by GAD colors (c) deejayy)</span>
               </div>
@@ -383,11 +383,39 @@
       </div>
     </div>
     <div class="hidden">
-      <input type="color" id="color-picker" onchange="configurator.addSwatchColor(event)"/>
+      <input type="color" id="color-picker" onchange="configurator.addSwatchColor(event)" />
     </div>
     <div class="tooltip" id="tooltip">
       <div class="tooltip-content" id="tooltip-content"></div>
     </div>
+    <pre class="gallery-item hidden">
+<span class="c Panel Box"><span class="c Panel ScreensNumber">[2+1]</span>══════</span><span class="c Panel Title Selected"> W:\src\farcolors </span><span class="c Panel Box">═╤════════╗</span><span class="c Panel Box">╔══════════</span><span class="c Panel Title"> W:\src\farcolors </span><span class="c Panel Box">═╤════</span><span class="c Clock">12:35</span>
+<span class="c Panel Box">║</span><span class="c Panel Text"><span class="c Panel Title Column">n           Name             <span class="c Panel Box"><span class="c Panel Title Column">│</span></span>  Size  </span><span class="c Panel Box">║</span><span class="c Panel Box">║</span><span class="c Panel Title Column">n           Name             <span class="c Panel Box"><span class="c Panel Title Column">│</span></span>  Size  </span><span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">..                           <span class="c Panel Box">│</span>&lt;  Up  &gt;<span class="c Panel Box"><span class="c Panel Scrollbar">▲</span></span><span class="c Panel Box">║</span><span class="c Panel Cursor">..                           </span><span class="c Panel Box"><span class="c Panel Cursor">│</span></span><span class="c Panel Cursor">&lt;  Up  &gt;</span><span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">.git                         <span class="c Panel Box">│</span>&lt;Folder&gt;<span class="c Panel Box"><span class="c Panel Scrollbar">█</span></span><span class="c Panel Box">║</span>.git                         <span class="c Panel Box">│</span>&lt;Folder&gt;<span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">clacon2                 woff2<span class="c Panel Box">│</span>  51 052<span class="c Panel Box"><span class="c Panel Scrollbar">█</span></span><span class="c Panel Box">║</span>clacon2                 woff2<span class="c Panel Box">│</span>  51 052<span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text"><span class="c Panel Text Selected">index                    html</span><span class="c Panel Box"><span class="c Panel Text Selected">│</span></span><span class="c Panel Text Selected">     368</span><span class="c Panel Box"><span class="c Panel Scrollbar">█</span></span><span class="c Panel Box">║</span>index                    html<span class="c Panel Box">│</span>     368<span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text"><span class="c Panel Cursor Selected">favicon                   ico</span><span class="c Panel Box"><span class="c Panel Cursor Selected">│</span></span><span class="c Panel Cursor Selected">   6 944</span><span class="c Panel Box"><span class="c Panel Scrollbar">█</span></span><span class="c Panel Box">║</span>favicon                   ico<span class="c Panel Box">│</span>   6 944<span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text"><span class="c Panel Text Selected">main                      css</span><span class="c Panel Box"><span class="c Panel Text Selected">│</span></span><span class="c Panel Text Selected">     600</span><span class="c Panel Box"><span class="c Panel Scrollbar">░</span></span><span class="c Panel Box">║</span>main                      css<span class="c Panel Box">│</span>     600<span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text"><span class="c Panel Text Selected">main                      js </span><span class="c Panel Box"><span class="c Panel Text Selected">│</span></span><span class="c Panel Text Selected">      98</span><span class="c Panel Box"><span class="c Panel Scrollbar">░</span></span><span class="c Panel Box">║</span>main                      js <span class="c Panel Box">│</span>      98<span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">                             <span class="c Panel Box">│</span>        <span class="c Panel Box"><span class="c Panel Scrollbar">░</span></span><span class="c Panel Box">║</span>                             <span class="c Panel Box">│</span>        <span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">                             <span class="c Panel Box">│</span>        <span class="c Panel Box"><span class="c Panel Scrollbar">░</span></span><span class="c Panel Box">║</span>                             <span class="c Panel Box">│</span>        <span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">                             <span class="c Panel Box">│</span>        <span class="c Panel Box"><span class="c Panel Scrollbar">░</span></span><span class="c Panel Box">║</span>                             <span class="c Panel Box">│</span>        <span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">                             <span class="c Panel Box">│</span>        <span class="c Panel Box"><span class="c Panel Scrollbar">░</span></span><span class="c Panel Box">║</span>                             <span class="c Panel Box">│</span>        <span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">                             <span class="c Panel Box">│</span>        <span class="c Panel Box"><span class="c Panel Scrollbar">░</span></span><span class="c Panel Box">║</span>                             <span class="c Panel Box">│</span>        <span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">                             <span class="c Panel Box">│</span>        <span class="c Panel Box"><span class="c Panel Scrollbar">░</span></span><span class="c Panel Box">║</span>                             <span class="c Panel Box">│</span>        <span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">                             <span class="c Panel Box">│</span>      <span class="c Panel DragText">Copy main.js</span>                     <span class="c Panel Box">│</span>        <span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">                             <span class="c Panel Box">│</span>        <span class="c Panel Box"><span class="c Panel Scrollbar">░</span></span><span class="c Panel Box">║</span>                             <span class="c Panel Box">│</span>        <span class="c Panel Box">║</span></span>
+<span class="c Panel Box">║</span><span class="c Panel Text">                             <span class="c Panel Box">│</span>        <span class="c Panel Box"><span class="c Panel Scrollbar">▼</span></span><span class="c Panel Box">║</span>                             <span class="c Panel Box">│</span>        <span class="c Panel Box">║</span></span>
+<span class="c Panel Box">╟─────────<span class="c Panel Info Selected"> Bytes: 38 382 </span>─────┴────────╢</span><span class="c Panel Box">╟─────────────────────────────┴────────╢</span>
+<span class="c Panel Box">║</span><span class="c Panel Text">favicon.ico                      6 944<span class="c Panel Box">║</span><span class="c Panel Box">║</span>..                            &lt;  Up  &gt;<span class="c Panel Box">║</span></span>
+<span class="c Panel Box">╚══</span><span class="c Panel Info Total"> 59 062 (5/1) </span><span class="c Panel Box">═══</span><span class="c Panel Info Total"> 12 567 162 880 </span><span class="c Panel Box">═══╝</span><span class="c Panel Box">╚══</span><span class="c Panel Info Total"> 59 062 (5/1) </span><span class="c Panel Box">═══</span><span class="c Panel Info Total"> 12 567 162 880 </span><span class="c Panel Box">═══╝</span>
+<span class="c CommandLine UserScreen">-rwxrwxrwx 1 user None 20824 Jul 27 12:42 nc5pal2.farconfig                     </span>
+<span class="c CommandLine UserScreen">                                                                                </span>
+<span class="c CommandLine"><span class="c CommandLine Prefix">W:\src\farcolors&gt;</span> <span class="c CommandLine">ls<span class="c CommandLine Selected"> -l</span>a</span>                                                       <span class="c CommandLine Prefix">↑</span></span>
+<span class="c Keybar Background"><span class="c Keybar Num">1</span><span class="c Keybar Text">Add   </span> <span class="c Keybar Num">2</span><span class="c Keybar Text">Extrct</span> <span class="c Keybar Num">3</span><span class="c Keybar Text">ArcCmd</span> <span class="c Keybar Num">4</span><span class="c Keybar Text">Edit… </span> <span class="c Keybar Num">5</span><span class="c Keybar Text">Copy  </span> <span class="c Keybar Num">6</span><span class="c Keybar Text">Rename</span> <span class="c Keybar Num">7</span><span class="c Keybar Text">      </span> <span class="c Keybar Num">8</span><span class="c Keybar Text">Delete</span> <span class="c Keybar Num">9</span><span class="c Keybar Text">Save  </span> <span class="c Keybar Num">10</span><span class="c Keybar Text">Last  </span></span>
+    </pre>
+
     <script type="module">
       import Configurator from './main.js';
 

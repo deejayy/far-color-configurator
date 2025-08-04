@@ -569,7 +569,38 @@ button {
   max-height: 90vh;
 }
 
-.preview .c {
+.gallery {
+  display: flex;
+  gap: 16px;
+  max-width: calc(100vw - 32px - 64px - 700px);
+  overflow: auto;
+}
+
+.gallery-item {
+  cursor: pointer;
+  font-family: "Classic Console WEB", monospace;
+  --size: 5px;
+  font-size: var(--size);
+  line-height: var(--size);
+  white-space: pre-wrap;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+  width: calc(80 * var(--size) / 2);
+  min-width: calc(80 * var(--size) / 2);
+  overflow: hidden;
+}
+
+.name-and-desc {
+  font-size: 16px;
+  line-height: 16px;
+  margin: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.c {
   display: inline-block;
   background-color: var(--bg-Panel-Text);
   color: var(--fg-Panel-Text);

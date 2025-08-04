@@ -13,7 +13,7 @@ export default class Configurator {
     this.paletteCatalog = await this.loadCatalog(this.PALETTE_FOLDER).then(this.listPalettes);
     this.themeCatalog = await this.loadCatalog(this.THEME_FOLDER).then(this.listThemes);
     this.loadPaletteFromURL('./monokai.xml');
-    this.loadThemeFromURL('./default.farconfig');
+    this.applyTheme(await this.loadThemeFromURL('./default.farconfig'));
     this.generateAnsi256Palette();
 
     this.bindHover();
@@ -386,13 +386,32 @@ export default class Configurator {
   };
 
   listThemes = (catalog) => {
-    catalog.forEach(({ file, desc }) => {
+    const gallery = document.querySelector('.gallery');
+    const galleryItem = document.querySelector('.gallery-item');
+
+    catalog.forEach(async ({ file, desc }) => {
       const themeList = document.getElementById('official-themes');
       const themeDiv = document.createElement('div');
+      const galleryItemClone = galleryItem.cloneNode(true);
+      galleryItemClone.classList.remove('hidden');
+      galleryItemClone.dataset.title = file.replace(/\.farconfig/, '');
+      this.loadThemeFromGithub(file).then((theme) => {
+        this.applyThemeToNode(theme, galleryItemClone);
+      });
+      const nameAndDesc = document.createElement('div');
+      nameAndDesc.className = 'name-and-desc';
+      galleryItemClone.title = `${file} - ${desc}`;
+      nameAndDesc.textContent = file.replace(/\.farconfig/, '');
+      galleryItemClone.appendChild(nameAndDesc);
+      galleryItemClone.addEventListener('click', async () => {
+        this.applyTheme(await this.loadThemeFromGithub(file));
+      });
+
       themeDiv.className = 'theme-name';
-      themeDiv.innerHTML = `${file} <span class="desc">(${desc})</span>`;
-      themeDiv.addEventListener('click', () => {
-        this.loadThemeFromGithub(file);
+      themeDiv.innerHTML = `${galleryItemClone.dataset.title} <span class="desc">(${desc})</span>`;
+      gallery.appendChild(galleryItemClone);
+      themeDiv.addEventListener('click', async () => {
+        this.applyTheme(await this.loadThemeFromGithub(file));
       });
       themeList.appendChild(themeDiv);
     });
@@ -400,9 +419,15 @@ export default class Configurator {
     return catalog;
   };
 
-  loadThemeFromURL = async (url, noApply) => {
+  applyThemeFromURL = async (url) => {
+    const theme = await this.loadThemeFromURL(url);
+    this.applyTheme(theme);
+  };
+
+  loadThemeFromURL = async (url) => {
     if (url !== './default.farconfig') {
-      await this.loadThemeFromURL('./default.farconfig', true);
+      const defaultTheme = await this.loadThemeFromURL('./default.farconfig');
+      // this.applyTheme(defaultTheme);
     }
 
     const themeFile = await fetch(url)
@@ -411,14 +436,12 @@ export default class Configurator {
         console.error('Error loading theme:', error);
       });
 
-    if (!noApply) {
-      this.applyTheme(this.parseFarconfig(themeFile));
-    }
+    return this.parseFarconfig(themeFile);
   };
 
   loadThemeFromGithub = async (file) => {
     const url = `${this.THEME_FOLDER}/${file}`;
-    await this.loadThemeFromURL(url);
+    return await this.loadThemeFromURL(url);
   };
 
   parseFarColor = (color, flags, layer) => {
@@ -532,9 +555,9 @@ export default class Configurator {
     this.updateUsedColors();
   };
 
-  applyTheme = (theme) => {
+  applyThemeToNode = (theme, node) => {
     this.currentTheme = theme;
-    const root = document.documentElement;
+    const root = node ?? document.documentElement;
     theme.forEach(({ name, fg, bg }) => {
       if (fg !== undefined) {
         const fgValue = fg.startsWith('#') ? fg : `var(--x${fg})`;
@@ -545,6 +568,10 @@ export default class Configurator {
         root.style.setProperty(`--bg-${name.replace(/\./g, '-')}`, bgValue);
       }
     });
+  };
+
+  applyTheme = (theme) => {
+    this.applyThemeToNode(theme, document.documentElement);
 
     this.createSwatches();
 
