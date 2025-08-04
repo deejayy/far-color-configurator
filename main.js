@@ -1,6 +1,6 @@
 export default class Configurator {
-  PALETTE_FOLDER = 'https://raw.githubusercontent.com/deejayy/Cmder-Color-Themes/refs/heads/master/themes';
-  THEME_FOLDER = 'https://raw.githubusercontent.com/deejayy/far-color-configurator/refs/heads/master/themes';
+  PALETTE_FOLDER = './palettes';
+  THEME_FOLDER = './themes';
 
   currentPalette = null;
   currentTheme = null;
@@ -12,8 +12,8 @@ export default class Configurator {
   init = async () => {
     this.paletteCatalog = await this.loadCatalog(this.PALETTE_FOLDER).then(this.listPalettes);
     this.themeCatalog = await this.loadCatalog(this.THEME_FOLDER).then(this.listThemes);
-    this.loadPaletteFromURL('./monokai.xml');
-    this.applyTheme(await this.loadThemeFromURL('./default.farconfig'));
+    this.loadPaletteFromURL('./palettes/monokai.xml');
+    this.applyTheme(await this.loadThemeFromURL('./themes/default.farconfig'));
     this.generateAnsi256Palette();
 
     this.bindHover();
