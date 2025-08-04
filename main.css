@@ -4,6 +4,8 @@
 }
 
 :root {
+  --scrollbar-bg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><circle cx="5" cy="5" r="2" fill="var(--x04)"/></svg>');
+
   --c0x: inherit;
   --x0x: inherit;
 
@@ -1261,4 +1263,19 @@ button {
 
 .hidden {
   display: none;
+}
+
+::-webkit-scrollbar {
+  background-color: var(--bg-Panel-Scrollbar);
+  background-image: var(--scrollbar-bg);
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--fg-Panel-Scrollbar);
 }

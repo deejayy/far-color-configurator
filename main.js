@@ -407,6 +407,7 @@ export default class Configurator {
 
   applyPalette = (palette) => {
     this.currentPalette = palette;
+    this.updateScrollbar();
     this.applyPaletteToNode(palette, document.documentElement);
   };
 
@@ -588,8 +589,26 @@ export default class Configurator {
     });
   };
 
+  updateScrollbar = () => {
+    const scrollbarTheme = this.currentTheme?.find(item => item.name === 'Panel.Scrollbar');
+    if (scrollbarTheme && scrollbarTheme.fg) {
+      let scrollbarColor;
+      if (scrollbarTheme.fg.startsWith('#')) {
+        scrollbarColor = scrollbarTheme.fg;
+      } else {
+        const paletteKey = `c${parseInt(scrollbarTheme.fg, 16).toString().padStart(2, '0')}`;
+        scrollbarColor = this.currentPalette[paletteKey] || '#808080';
+      }
+      
+      const svgData = `<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"><style type="text/css">rect {fill: ${scrollbarColor};}</style><rect x="0" y="1" width="1" height="1" /><rect x="2" y="0" width="1" height="1" /><rect x="0" y="3" width="1" height="1" /><rect x="2" y="2" width="1" height="1" /></svg>`;
+      const encodedSvg = encodeURIComponent(svgData);
+      document.documentElement.style.setProperty('--scrollbar-bg', `url('data:image/svg+xml;utf8,${encodedSvg}')`);
+    }
+  }
+
   applyTheme = (theme) => {
     this.currentTheme = theme;
+    this.updateScrollbar();
     this.applyThemeToNode(theme, document.documentElement);
 
     this.createSwatches();
