@@ -1102,6 +1102,16 @@ button {
   position: relative;
 }
 
+.section-title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.section-title > * {
+  flex-grow: 1;
+}
+
 .c.Clock { background-color: var(--bg-Clock); color: var(--fg-Clock); } /* ok */
 .c.CommandLine { background-color: var(--bg-CommandLine); color: var(--fg-CommandLine); } /* ok */
 .c.CommandLine.Prefix { background-color: var(--bg-CommandLine-Prefix); color: var(--fg-CommandLine-Prefix); } /* ok */
